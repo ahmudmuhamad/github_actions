@@ -18,3 +18,6 @@ jobs:
 
       - name: list all files
         run: ls -la
+
+      - name: readme
+        run: cat README.md
