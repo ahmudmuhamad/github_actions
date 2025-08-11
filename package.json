@@ -1,0 +1,17 @@
+{
+  "name": "greeting-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js app that greets the user",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "./test.sh"
+  },
+  "keywords": [
+    "greeting",
+    "nodejs",
+    "example"
+  ],
+  "author": "",
+  "license": ""
+}
