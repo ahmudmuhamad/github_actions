@@ -1,4 +1,5 @@
 function greeting(name) {
     console.log("Hello " + name);
-    console.log("sleeeeeeeeeeeeeeeepy")
 }
+
+greeting(process.argv[2]);
