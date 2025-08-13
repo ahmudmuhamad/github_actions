@@ -1,0 +1,16 @@
+on:
+    schedule:
+        - cron: '0 0 * * *'  # Runs every day at midnight
+
+jobs:
+    daily-task:
+        runs-on: ubuntu-latest
+        name: Daily Task
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Run daily script
+              run: |
+                echo "Running daily task..."
+                cat README.md
