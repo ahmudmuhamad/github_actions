@@ -1,0 +1,34 @@
+name: Needs Example Workflow
+
+on:
+  workflow_dispatch:
+# Execution Order Diagram:
+# job1 ──► job2 ──► job3
+#   │                 ▲
+#   └─────────────────┘
+#
+# Explanation:
+# 1. job1 runs first.
+# 2. job2 runs only after job1 finishes (needs: job1).
+# 3. job3 waits for BOTH job1 and job2 (needs: [job1, job2]).
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 in Job 1
+        run: echo "Job 1 is running first"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: Step 1 in Job 2
+        run: echo "Job 2 runs after Job 1"
+
+  job3:
+    runs-on: ubuntu-latest
+    needs: [job1, job2]
+    steps:
+      - name: Step 1 in Job 3
+        run: echo "Job 3 runs after Job 1 and Job 2 are done"

@@ -1,0 +1,14 @@
+on:
+  workflow_dispatch:
+
+jobs:
+    job_01:
+        runs-on: ubuntu-latest
+        name: Job 01
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Run Job 01
+              run: echo "Running ${GITHUB_JOB} in ${{ github.event_name }} event"
+  
