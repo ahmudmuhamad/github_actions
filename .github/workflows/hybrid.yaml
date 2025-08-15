@@ -1,0 +1,26 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  hybrid_job:
+    runs-on: ubuntu-latest
+    name: Hybrid Job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Hybrid Job
+        run: echo "Running ${GITHUB_JOB} in ${{ github.event_name }} event"
+
+      - name: Run Inside Alpine container
+        uses: docker://alpine:latest
+        with:
+          args: -c "echo 'Running inside an Alpine container'"
+
+  dockerized_job:
+    runs-on: ubuntu-latest
+    container: node:20
+    name: Dockerized Job
+    steps:
+      - run: node --version
+      - run: echo "Running inside a Node.js container"
