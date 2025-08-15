@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  checkout_actions:
+    runs-on: ubuntu-latest
+    name: Checkout Actions
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # ensure code is available for custom actions
+
+  greeting_job:
+    runs-on: ubuntu-latest
+    name: Greeting Job
+    steps:
+      - name: Greet User
+        uses: ./.github/actions/greet  # correct path, no @v1
+        with:
+          name: Ahmed
