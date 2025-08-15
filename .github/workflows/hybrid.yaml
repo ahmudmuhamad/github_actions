@@ -1,3 +1,5 @@
+name: Hybrid and Dockerized Jobs
+
 on:
   workflow_dispatch:
 
@@ -9,18 +11,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run Hybrid Job
+      - name: Run directly on host
         run: echo "Running ${GITHUB_JOB} in ${{ github.event_name }} event"
 
-      - name: Run Inside Alpine container
+      - name: Run inside Alpine container
         uses: docker://alpine:latest
         with:
-          args: -c "echo 'Running inside an Alpine container'"
+          args: sh -c "echo 'Running inside an Alpine container'"
 
   dockerized_job:
     runs-on: ubuntu-latest
-    container: node:20
+    container:
+      image: node:20
+      options: --init
     name: Dockerized Job
     steps:
-      - run: node --version
-      - run: echo "Running inside a Node.js container"
+      - name: Show Node version
+        run: node --version
+
+      - name: Run inside Node container
+        run: echo "Running inside a Node.js container"
